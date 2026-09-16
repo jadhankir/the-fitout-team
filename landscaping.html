@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outdoor Landscaping | The Fitout Team</title>
+    <meta name="description" content="Outdoor Landscaping — professional fitout, maintenance and renovation services in Dubai by The Fitout Team.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@1.46.0/dist/umd/lucide.min.js" integrity="sha384-1avDoIZZ5mKtAlvTbQ2jge+TZA4z+qwhMFHdCpATww/SLVM8wKs7sROOEKMOizyV" crossorigin="anonymous"></script>
+    <style>
+        :root { --brand-dark: #0a0f16; --brand-darker: #05080b; --brand-gold: #D4AF37; --brand-card: #121820; --text-light: #F8F9FA; --text-muted: #A0AAB2; --glass-border: rgba(255, 255, 255, 0.08); --whatsapp: #25D366; --transition: all 0.4s ease; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--brand-dark); color: var(--text-light); overflow-x: hidden;}
+        header { position: fixed; top: 0; left: 0; right: 0; height: 90px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; background: var(--brand-darker); z-index: 1000; border-bottom: 1px solid var(--glass-border); }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; display: flex; align-items: center; gap: 12px; color: var(--text-light); text-decoration: none;}
+        .logo-mark { width: 35px; height: 35px; border: 2px solid var(--brand-gold); display: flex; align-items: center; justify-content: center; border-radius: 4px; }
+        .back-link { display: flex; align-items: center; gap: 8px; color: var(--text-light); font-weight: 600; text-decoration: none; transition: var(--transition); border: 1px solid var(--glass-border); padding: 10px 20px; border-radius: 4px;}
+        .back-link:hover { background: var(--brand-gold); color: var(--brand-dark); border-color: var(--brand-gold); }
+
+        .service-hero { position: relative; height: 60vh; min-height: 500px; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+        .service-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('') center/cover; z-index: -2; }
+        .service-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,8,11,0.85); z-index: -1; }
+        .service-hero h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; color: var(--brand-gold); margin-bottom: 20px; }
+        
+        .service-content { padding: 100px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; max-width: 1400px; margin: 0 auto; align-items: center; }
+        .service-text h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 25px; }
+        .service-text p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; }
+        .features-list { list-style: none; }
+        .features-list li { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; font-size: 1.1rem; font-weight: 500; }
+        .features-list i { color: var(--brand-gold); }
+        .service-image { width: 100%; height: 500px; object-fit: cover; border-radius: 12px; border: 1px solid var(--glass-border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+
+        .lead-section { background: var(--brand-darker); padding: 100px 5%; text-align: center; border-top: 1px solid var(--glass-border); }
+        .btn-wa { background: var(--brand-gold); color: var(--brand-dark); padding: 18px 40px; font-size: 1.1rem; font-weight: 700; text-decoration: none; border-radius: 6px; display: inline-flex; align-items: center; gap: 10px; transition: var(--transition); text-transform: uppercase; letter-spacing: 1px;}
+        .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(212,175,55,0.3); }
+        @media (max-width: 1024px) { .service-content { grid-template-columns: 1fr; } .service-hero h1 { font-size: 3rem; } }
+
+        @media (max-width: 600px) {
+            .logo { font-size: 1.05rem; gap: 8px; }
+            .logo-mark { width: 28px; height: 28px; }
+            .back-link { padding: 8px 14px; font-size: 0.78rem; }
+            .service-hero { min-height: 380px; }
+            .service-hero h1 { font-size: 2.2rem; }
+            .service-text h2 { font-size: 2rem; }
+            .service-image { height: 280px; }
+            .lead-section { padding: 70px 5%; }
+            .btn-wa { padding: 15px 28px; font-size: 0.95rem; }
+        }
+
+        /* ===== UNIFIED NAVIGATION BAR (injected) ===== */
+        header#main-header {
+            position: fixed; top: 0; left: 0; right: 0; height: 90px; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; background: rgba(5, 8, 11, 0.95); z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        header#main-header .logo { display: flex; align-items: center; z-index: 1002; gap: 12px; }
+        header#main-header .logo-mark { display: none; }
+        .logo-img { height: 60px; width: auto; object-fit: contain; }
+        .back-link { display: none !important; }
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+        .btn-header { border: 1px solid var(--glass-border); padding: 9px 16px; border-radius: 4px; font-size: 0.78rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: var(--transition); background: rgba(255,255,255,0.03); white-space: nowrap; color: var(--text-light); }
+        .btn-header * { pointer-events: none; }
+        .btn-header:hover { background: var(--brand-gold); color: var(--brand-dark); border-color: var(--brand-gold); }
+        .hamburger { display: none; background: none; border: none; color: var(--text-light); cursor: pointer; z-index: 1002; padding: 5px; }
+        nav { height: 100%; display: flex; align-items: center; }
+        nav > ul { display: flex; gap: 22px; height: 100%; align-items: center; margin: 0; padding: 0; list-style: none; }
+        nav > ul > li { position: relative; height: 100%; display: flex; align-items: center; }
+        nav > ul > li > a { font-size: 0.78rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); transition: var(--transition); display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+        nav > ul > li > a:hover { color: var(--brand-gold); }
+        .dropdown-menu { position: absolute; top: 100%; left: 0; background: var(--brand-darker); border: 1px solid var(--glass-border); min-width: 260px; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; padding: 10px 0; border-radius: 8px; box-shadow: 0 15px 40px rgba(0,0,0,0.9); pointer-events: none; z-index: 1100; list-style: none; margin: 0; }
+        .dropdown-menu::after { content: ''; position: absolute; bottom: 100%; left: 0; width: 100%; height: 25px; background: transparent; }
+        nav > ul > li:hover > .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
+        .dropdown-menu li { position: relative; list-style: none; margin: 0; width: 100%; }
+        .dropdown-menu li > a { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; font-size: 0.8rem; color: var(--text-muted); transition: var(--transition); white-space: nowrap; }
+        .dropdown-menu li > a:hover { color: var(--brand-gold); background: rgba(255,255,255,0.02); padding-left: 25px; }
+        .dropdown-submenu > .dropdown-menu { top: 0; left: 100%; transform: translateX(10px); }
+        .dropdown-submenu > .dropdown-menu::after { content: ''; position: absolute; top: 0; right: 100%; width: 25px; height: 100%; background: transparent; }
+        .dropdown-submenu:hover > .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(0); pointer-events: auto; }
+        @media (max-width: 1024px) {
+            .hamburger { display: block; }
+            nav { position: fixed; top: 90px; left: 0; width: 100%; height: calc(100vh - 90px); height: calc(100dvh - 90px); background: rgba(5, 8, 11, 0.98); backdrop-filter: blur(16px); flex-direction: column; align-items: flex-start; padding: 20px 5% 100px; transition: transform 0.4s ease, opacity 0.4s ease; transform: translateX(-100%); opacity: 0; visibility: hidden; z-index: 1001; overflow-y: auto; }
+            nav.active { transform: translateX(0); opacity: 1; visibility: visible; }
+            nav > ul { flex-direction: column; width: 100%; gap: 10px; height: auto; align-items: flex-start; }
+            nav > ul > li { width: 100%; height: auto; flex-direction: column; align-items: flex-start; }
+            nav > ul > li > a { font-size: 0.9rem; width: 100%; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .dropdown-menu { position: static !important; opacity: 1 !important; visibility: visible !important; transform: none !important; box-shadow: none !important; background: rgba(255,255,255,0.02) !important; border: none !important; border-left: 2px solid var(--brand-gold) !important; padding-left: 10px !important; width: 100% !important; display: none; pointer-events: auto !important; margin-top: 3px; }
+            .dropdown-menu.mobile-open { display: block !important; }
+            .dropdown-menu li > a { padding: 10px 12px; font-size: 0.85rem; }
+            .dropdown-submenu > .dropdown-menu { margin-left: 8px; border-left: 1px solid var(--glass-border) !important; }
+            .btn-header { display: none; }
+            .logo-img { height: 40px; }
+        }
+    </style>
+</head>
+<body>
+        <header id="main-header">
+        <a href="index.html" class="logo">
+            <img src="Screenshot 2026-09-12 153109.png" alt="The Fitout Team Logo" class="logo-img">
+        </a>
+<nav id="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="has-dropdown">
+                    <a href="javascript:void(0);" class="mobile-dropdown-toggle">Projects <i data-lucide="chevron-down" style="width:14px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="has-dropdown dropdown-submenu">
+                            <a href="javascript:void(0);" class="mobile-dropdown-toggle">Residential <i data-lucide="chevron-right" style="width:12px;"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="residential.html#villas">Premium Villas</a></li>
+                                <li><a href="residential.html#apartments">High-End Apartments</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-dropdown dropdown-submenu">
+                            <a href="javascript:void(0);" class="mobile-dropdown-toggle">Commercial <i data-lucide="chevron-right" style="width:12px;"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="commercial.html#hospitals">Hospitals</a></li>
+                                <li><a href="commercial.html#restaurants">Restaurants</a></li>
+                                <li><a href="commercial.html#offices">Business Offices</a></li>
+                                <li><a href="commercial.html#malls">Malls</a></li>
+                                <li><a href="commercial.html#shops">Retail Shops</a></li>
+                                <li><a href="commercial.html#schools">Schools</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="javascript:void(0);" class="mobile-dropdown-toggle">Maintain <i data-lucide="chevron-down" style="width:14px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ac-maintenance.html">AC Maintenance</a></li>
+                        <li><a href="plumbing.html">Plumbing</a></li>
+                        <li><a href="electrical.html">Electrical</a></li>
+                        <li><a href="carpentry.html">Carpentry</a></li>
+                        <li><a href="masonry.html">Masonry</a></li>
+                        <li><a href="pool-care.html">Pool Care</a></li>
+                        <li><a href="gates-garage.html">Gates & Garage Doors</a></li>
+                        <li><a href="amc-contracts.html">Annual Maintenance Contracts</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="javascript:void(0);" class="mobile-dropdown-toggle">Services <i data-lucide="chevron-down" style="width:14px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ac-duct.html">AC Duct Cleaning</a></li>
+                        <li><a href="water-tank.html">Water Tank Sanitization</a></li>
+                        <li><a href="pest-control.html">Pest Control Systems</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="javascript:void(0);" class="mobile-dropdown-toggle">Renovate <i data-lucide="chevron-down" style="width:14px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="home-renovation.html">Home Renovation</a></li>
+                        <li><a href="villa-renovation.html">Villa Renovation</a></li>
+                        <li><a href="kitchen-renovation.html">Kitchen Renovation</a></li>
+                        <li><a href="bathroom-renovation.html">Bathroom Renovation</a></li>
+                        <li><a href="painting.html">Painting</a></li>
+                        <li><a href="tiling-flooring.html">Tiling & Flooring</a></li>
+                        <li><a href="shell-core.html">Shell & Core Fit-Out</a></li>
+                        <li><a href="pool-construction.html">Pool Construction</a></li>
+                        <li><a href="landscaping.html">Outdoor Landscaping</a></li>
+                        <li><a href="aluminum-glass.html">Aluminum & Glass</a></li>
+                    </ul>
+                </li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="https://wa.me/971522806351?text=Hello,%20I%20would%20like%20to%20request%20a%20site%20visit%20from%20The%20Fitout%20Team." target="_blank" class="btn-header" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;"></i> Request a visit</a>
+            <button class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation"><i data-lucide="menu" style="width:26px; height:26px;"></i></button>
+        </div>
+    </header>
+
+    <section class="service-hero">
+        <div class="service-bg"></div>
+        <div class="service-overlay"></div>
+        <div style="position:relative; z-index:1;">
+            <span style="color:var(--text-light); text-transform:uppercase; letter-spacing:2px; font-weight:600;">Renovate Division</span>
+            <h1>Outdoor Landscaping</h1>
+        </div>
+    </section>
+
+    <section class="service-content">
+        <div class="service-text">
+            <h2>Seamless Exterior Living.</h2>
+            <p>Extend the luxury of your interior to the outdoors. The Fitout Team delivers premium hardscaping and softscaping solutions designed to thrive in Dubai’s demanding climate, creating perfect environments for relaxation and entertainment.</p>
+            <p>From the construction of bespoke pergolas and fully equipped outdoor kitchens to the integration of automated smart-irrigation and architectural landscape lighting, we curate every external detail.</p>
+            <ul class="features-list">
+                <li><i data-lucide="check-circle"></i> Custom Hardscaping & Stone Paving</li>
+                <li><i data-lucide="check-circle"></i> Smart Automated Irrigation Systems</li>
+                <li><i data-lucide="check-circle"></i> Bespoke Pergolas & Outdoor Kitchens</li>
+                <li><i data-lucide="check-circle"></i> Architectural Exterior Lighting Grids</li>
+            </ul>
+        </div>
+        <img src="Outdoor Landscaping.jpg" alt="Luxury Landscaping" class="service-image">
+    </section>
+
+    <section class="lead-section">
+        <h2 style="font-family:'Playfair Display', serif; font-size:3rem; margin-bottom:20px;">Redefine your exterior.</h2>
+        <p style="color:var(--text-muted); font-size:1.1rem; margin-bottom:40px;">Contact our exterior architects via WhatsApp to discuss your landscape transformation.</p>
+        <a href="https://wa.me/971522806351?text=Hello,%20I%20am%20inquiring%20about%20Landscaping%20services%20from%20The%20Fitout%20Team." target="_blank" class="btn-wa" rel="noopener noreferrer">
+            <i data-lucide="message-circle"></i> Start Landscape Design
+        </a>
+    </section>
+
+    <script>lucide.createIcons();
+        // Unified Navigation
+        window.addEventListener('scroll', () => { const mh = document.getElementById('main-header'); if (mh) mh.classList.toggle('scrolled', window.scrollY > 50); });
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        hamburgerBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            const icon = hamburgerBtn.querySelector('i');
+            icon.setAttribute('data-lucide', mobileNav.classList.contains('active') ? 'x' : 'menu');
+            lucide.createIcons();
+        });
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault(); e.stopPropagation();
+                const dropdown = toggle.parentElement.querySelector('.dropdown-menu');
+                if (dropdown) dropdown.classList.toggle('mobile-open');
+            });
+        });
+        document.querySelectorAll('#mobile-nav a:not(.mobile-dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                const icon = hamburgerBtn.querySelector('i');
+                icon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });</script>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residential Fitout | The Fitout Team</title>
+    <meta name="description" content="Residential Division — professional fitout, maintenance and renovation services in Dubai by The Fitout Team.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@1.46.0/dist/umd/lucide.min.js" integrity="sha384-1avDoIZZ5mKtAlvTbQ2jge+TZA4z+qwhMFHdCpATww/SLVM8wKs7sROOEKMOizyV" crossorigin="anonymous"></script>
+
+    <style>
+        :root { --brand-dark: #0a0f16; --brand-darker: #05080b; --brand-gold: #D4AF37; --brand-card: #121820; --text-light: #F8F9FA; --text-muted: #A0AAB2; --glass-border: rgba(255, 255, 255, 0.08); --whatsapp: #25D366; --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--brand-dark); color: var(--text-light); overflow-x: hidden; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        
+        .reveal { opacity: 0; transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translate(0, 0); }
+        .slide-up { transform: translateY(60px); } .slide-down { transform: translateY(-60px); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
+        
+        header { position: fixed; top: 0; left: 0; right: 0; height: 90px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; background: transparent; z-index: 1000; transition: var(--transition); border-bottom: 1px solid transparent; }
+        header.scrolled { background: rgba(5, 8, 11, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); height: 75px; border-bottom: 1px solid var(--glass-border); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; display: flex; align-items: center; gap: 12px; }
+        .logo-mark { width: 35px; height: 35px; border: 2px solid var(--brand-gold); display: flex; align-items: center; justify-content: center; border-radius: 4px; }
+        nav > ul { display: flex; gap: 35px; height: 100%; align-items: center; }
+        nav > ul > li { position: relative; height: 100%; display: flex; align-items: center; }
+        nav > ul > li > a { font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); display: flex; align-items: center; gap: 5px; padding: 35px 0;}
+        nav > ul > li > a:hover { color: var(--brand-gold); }
+        
+        /* THE DROPDOWN FIX */
+        .dropdown-menu { position: absolute; top: 100%; left: 0; background: var(--brand-darker); border: 1px solid var(--glass-border); min-width: 280px; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.9); pointer-events: none; z-index: 1000;}
+        .dropdown-menu::after { content: ''; position: absolute; bottom: 100%; left: 0; width: 100%; height: 30px; background: transparent; }
+        nav > ul > li:hover > .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
+        .dropdown-menu li { position: relative; }
+        .dropdown-menu li > a { display: flex; justify-content: space-between; align-items: center; padding: 12px 25px; font-size: 0.85rem; color: var(--text-muted); transition: var(--transition); }
+        .dropdown-menu li > a:hover { color: var(--brand-gold); background: rgba(255,255,255,0.02); padding-left: 30px; }
+        .dropdown-submenu > .dropdown-menu { top: 0; left: 100%; transform: translateX(10px); }
+        .dropdown-submenu > .dropdown-menu::after { content: ''; position: absolute; top: 0; right: 100%; left: auto; bottom: auto; width: 30px; height: 100%; background: transparent; }
+        .dropdown-submenu:hover > .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(0); pointer-events: auto; }
+
+        .btn-header { border: 1px solid var(--glass-border); padding: 12px 24px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: var(--transition); background: rgba(255,255,255,0.03); }
+        .btn-header:hover { background: var(--brand-gold); color: var(--brand-dark); border-color: var(--brand-gold); }
+
+        /* UNIFIED FOOTER */
+        footer { background: #030507; padding: 100px 5% 40px; border-top: 1px solid var(--glass-border); }
+        .footer-top { display: grid; grid-template-columns: 2fr 3fr 2fr; gap: 60px; max-width: 1400px; margin: 0 auto; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .footer-brand p { color: var(--text-muted); font-size: 0.9rem; margin-top: 20px; max-width: 300px; }
+        .footer-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .footer-col h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 25px; }
+        .footer-col ul { display: flex; flex-direction: column; gap: 15px; }
+        .footer-col a { color: var(--text-light); font-size: 0.95rem; transition: var(--transition); display: flex; align-items: center; justify-content: space-between; }
+        .footer-col a:hover { color: var(--brand-gold); }
+        .footer-contact { display: flex; flex-direction: column; gap: 20px; }
+        .contact-pill { display: flex; align-items: center; gap: 20px; padding: 15px 25px; background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 8px; transition: var(--transition); color: inherit; }
+        .contact-pill:hover { background: rgba(255,255,255,0.05); border-color: var(--brand-gold); transform: translateY(-3px); }
+        .contact-icon { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; }
+        .contact-text h5 { font-size: 1rem; margin-bottom: 3px; }
+        .contact-text p { font-size: 0.8rem; color: var(--text-muted); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 40px auto 0; font-size: 0.85rem; color: var(--text-muted); flex-wrap: wrap; gap: 20px;}
+        .footer-links { display: flex; gap: 25px; }
+        .footer-links a:hover { color: var(--brand-gold); }
+        .social-links { display: flex; gap: 15px; }
+        .social-icon { width: 35px; height: 35px; border-radius: 50%; border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+        .social-icon:hover { border-color: var(--brand-gold); color: var(--brand-gold); }
+        .footnote { text-align: center; font-size: 0.75rem; color: #555; margin-top: 40px; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 20px; }
+
+        /* SUBPAGE SPECIFIC */
+        .page-header { padding: 180px 5% 100px; text-align: center; background: linear-gradient(to bottom, var(--brand-darker), var(--brand-dark));}
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; color: var(--brand-gold); margin-bottom: 20px;}
+        .page-header p { color: var(--text-muted); font-size: 1.3rem; max-width: 700px; margin: 0 auto; line-height: 1.6; }
+        
+        .stacked-container { display: flex; flex-direction: column; gap: 80px; padding: 0 5% 120px; max-width: 1400px; margin: 0 auto; }
+        .stacked-card { position: relative; width: 100%; height: 600px; border-radius: 16px; overflow: hidden; display: flex; align-items: center; padding: 80px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1); }
+        .stacked-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); z-index: 1; }
+        .stacked-card::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(10,15,22,0.95) 0%, rgba(10,15,22,0.7) 50%, rgba(10,15,22,0.1) 100%); z-index: 2; }
+        .stacked-card:hover img { transform: scale(1.05); }
+        .card-content { position: relative; z-index: 3; max-width: 600px; }
+        .card-content h2 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 20px; color: var(--text-light); }
+        .card-content p { font-size: 1.15rem; color: #cbd5e1; margin-bottom: 35px; line-height: 1.7; }
+        .btn-solid { background: var(--brand-gold); color: var(--brand-dark); padding: 18px 36px; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; transition: var(--transition); border-radius: 6px; text-transform: uppercase; letter-spacing: 1px;}
+        .btn-solid:hover { background: #F3E5AB; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3); }
+
+        .fab-wrapper { position: fixed; bottom: 30px; right: 30px; z-index: 999; }
+        .fab-wa { display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: var(--whatsapp); color: white; border-radius: 50%; box-shadow: 0 10px 25px rgba(0,0,0,0.4); transition: transform 0.3s; }
+        .fab-wa:hover { transform: scale(1.1); }
+
+        @media (max-width: 1024px) { 
+            .stacked-card { height: auto; padding: 60px 30px; align-items: flex-end; }
+            .stacked-card::after { background: linear-gradient(to top, rgba(10,15,22,0.95) 0%, rgba(10,15,22,0.6) 60%, rgba(10,15,22,0.1) 100%); }
+            .card-content { max-width: 100%; text-align: center; }
+            .card-content h2 { font-size: 2.8rem; }
+            .footer-top { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .logo { font-size: 1.05rem; gap: 8px; }
+            .logo-mark { width: 28px; height: 28px; }
+            .back-link { padding: 8px 14px; font-size: 0.78rem; }
+            .page-header h1 { font-size: 2.2rem; }
+            .stacked-card { padding: 45px 20px; }
+            .card-content h2 { font-size: 2.2rem !important; }
+            .btn-solid { padding: 14px 24px; font-size: 0.95rem; }
+        }
+
+        /* ===== UNIFIED NAVIGATION BAR (injected) ===== */
+        header#main-header {
+            position: fixed; top: 0; left: 0; right: 0; height: 90px; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; background: rgba(5, 8, 11, 0.95); z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        header#main-header .logo { display: flex; align-items: center; z-index: 1002; gap: 12px; }
+        header#main-header .logo-mark { display: none; }
+        .logo-img { height: 60px; width: auto; object-fit: contain; }
+        .back-link { display: none !important; }
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+        .btn-header { border: 1px solid var(--glass-border); padding: 9px 16px; border-radius: 4px; font-size: 0.78rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: var(--transition); background: rgba(255,255,255,0.03); white-space: nowrap; color: var(--text-light); }
+        .btn-header * { pointer-events: none; }
+        .btn-header:hover { background: var(--brand-gold); color: var(--brand-dark); border-color: var(--brand-gold); }
+        .hamburger { display: none; background: none; border: none; color: var(--text-light); cursor: pointer; z-index: 1002; padding: 5px; }
+        nav { height: 100%; display: flex; align-items: center; }
+        nav > ul { display: flex; gap: 22px; height: 100%; align-items: center; margin: 0; padding: 0; list-style: none; }
+        nav > ul > li { position: relative; height: 100%; display: flex; align-items: center; }
+        nav > ul > li > a { font-size: 0.78rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); transition: var(--transition); display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+        nav > ul > li > a:hover { color: var(--brand-gold); }
+        .dropdown-menu { position: absolute; top: 100%; left: 0; background: var(--brand-darker); border: 1px solid var(--glass-border); min-width: 260px; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; padding: 10px 0; border-radius: 8px; box-shadow: 0 15px 40px rgba(0,0,0,0.9); pointer-events: none; z-index: 1100; list-style: none; margin: 0; }
+        .dropdown-menu::after { content: ''; position: absolute; bottom: 100%; left: 0; width: 100%; height: 25px; background: transparent; }
+        nav > ul > li:hover > .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
+        .dropdown-menu li { position: relative; list-style: none; margin: 0; width: 100%; }
+        .dropdown-menu li > a { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; font-size: 0.8rem; color: var(--text-muted); transition: var(--transition); white-space: nowrap; }
+        .dropdown-menu li > a:hover { color: var(--brand-gold); background: rgba(255,255,255,0.02); padding-left: 25px; }
+        .dropdown-submenu > .dropdown-menu { top: 0; left: 100%; transform: translateX(10px); }
+        .dropdown-submenu > .dropdown-menu::after { content: ''; position: absolute; top: 0; right: 100%; width: 25px; height: 100%; background: transparent; }
+        .dropdown-submenu:hover > .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(0); pointer-events: auto; }
+        @media (max-width: 1024px) {
+            .hamburger { display: block; }
+            nav { position: fixed; top: 90px; left: 0; width: 100%; height: calc(100vh - 90px); height: calc(100dvh - 90px); background: rgba(5, 8, 11, 0.98); backdrop-filter: blur(16px); flex-direction: column; align-items: flex-start; padding: 20px 5% 100px; transition: transform 0.4s ease, opacity 0.4s ease; transform: translateX(-100%); opacity: 0; visibility: hidden; z-index: 1001; overflow-y: auto; }
+            nav.active { transform: translateX(0); opacity: 1; visibility: visible; }
+            nav > ul { flex-direction: column; width: 100%; gap: 10px; height: auto; align-items: flex-start; }
+            nav > ul > li { width: 100%; height: auto; flex-direction: column; align-items: flex-start; }
+            nav > ul > li > a { font-size: 0.9rem; width: 100%; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .dropdown-menu { position: static !important; opacity: 1 !important; visibility: visible !important; transform: none !important; box-shadow: none !important; background: rgba(255,255,255,0.02) !important; border: none !important; border-left: 2px solid var(--brand-gold) !important; padding-left: 10px !important; width: 100% !important; display: none; pointer-events: auto !important; margin-top: 3px; }
+            .dropdown-menu.mobile-open { display: block !important; }
+            .dropdown-menu li > a { padding: 10px 12px; font-size: 0.85rem; }
+            .dropdown-submenu > .dropdown-menu { margin-left: 8px; border-left: 1px solid var(--glass-border) !important; }
+            .btn-header { display: none; }
+            .logo-img { height: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+        <header id="main-header">
+        <a href="index.html" class="logo">
+            <img src="Screenshot 2026-09-12 153109.png" alt="The Fitout Team Logo" class="logo-img">
+        </a>
+<nav id="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="has-dropdown">
+                    <a href="javascript:void(0);" class="mobile-dropdown-toggle">Projects <i data-lucide="chevron-down" style="width:14px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="has-dropdown dropdown-submenu">
+                            <a href="javascript:void(0);" class="mobile-dropdown-toggle">Residential <i data-lucide="chevron-right" style="width:12px;"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="residential.html#villas">Premium Villas</a></li>
+                                <li><a href="residential.html#apartments">High-End Apartments</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-dropdown dropdown-submenu">
+                            <a href="javascript:void(0);" class="mobile-dropdown-toggle">Commercial <i data-lucide="chevron-right" style="width:12px;"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="commercial.html#hospitals">Hospitals</a></li>
+                                <li><a href="commercial.html#restaurants">Restaurants</a></li>
+                                <li><a href="commercial.html#offices">Business Offices</a></li>
+                                <li><a href="commercial.html#malls">Malls</a></li>
+                                <li><a href="commercial.html#shops">Retail Shops</a></li>
+                                <li><a href="commercial.html#schools">Schools</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="javascript:void(0);" class="mobile-dropdown-toggle">Maintain <i data-lucide="chevron-down" style="width:14px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ac-maintenance.html">AC Maintenance</a></li>
+                        <li><a href="plumbing.html">Plumbing</a></li>
+                        <li><a href="electrical.html">Electrical</a></li>
+                        <li><a href="carpentry.html">Carpentry</a></li>
+                        <li><a href="masonry.html">Masonry</a></li>
+                        <li><a href="pool-care.html">Pool Care</a></li>
+                        <li><a href="gates-garage.html">Gates & Garage Doors</a></li>
+                        <li><a href="amc-contracts.html">Annual Maintenance Contracts</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="javascript:void(0);" class="mobile-dropdown-toggle">Services <i data-lucide="chevron-down" style="width:14px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ac-duct.html">AC Duct Cleaning</a></li>
+                        <li><a href="water-tank.html">Water Tank Sanitization</a></li>
+                        <li><a href="pest-control.html">Pest Control Systems</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="javascript:void(0);" class="mobile-dropdown-toggle">Renovate <i data-lucide="chevron-down" style="width:14px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="home-renovation.html">Home Renovation</a></li>
+                        <li><a href="villa-renovation.html">Villa Renovation</a></li>
+                        <li><a href="kitchen-renovation.html">Kitchen Renovation</a></li>
+                        <li><a href="bathroom-renovation.html">Bathroom Renovation</a></li>
+                        <li><a href="painting.html">Painting</a></li>
+                        <li><a href="tiling-flooring.html">Tiling & Flooring</a></li>
+                        <li><a href="shell-core.html">Shell & Core Fit-Out</a></li>
+                        <li><a href="pool-construction.html">Pool Construction</a></li>
+                        <li><a href="landscaping.html">Outdoor Landscaping</a></li>
+                        <li><a href="aluminum-glass.html">Aluminum & Glass</a></li>
+                    </ul>
+                </li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="https://wa.me/971522806351?text=Hello,%20I%20would%20like%20to%20request%20a%20site%20visit%20from%20The%20Fitout%20Team." target="_blank" class="btn-header" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;"></i> Request a visit</a>
+            <button class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation"><i data-lucide="menu" style="width:26px; height:26px;"></i></button>
+        </div>
+    </header>
+
+    <section class="page-header reveal slide-down">
+        <h1>Residential Division</h1>
+        <p>Exclusive architectural modifications and luxury renovations designed to elevate premium living spaces across Dubai.</p>
+    </section>
+
+    <!-- STACKED CARDS -->
+    <div class="stacked-container">
+        <div class="stacked-card reveal slide-up" id="villas">
+            <img src="fitout villa ai.jpg" alt="Premium Villa Fitout">
+            <div class="card-content">
+                <h2>Villas</h2>
+                <p>Complete structural renovation, premium material sourcing, and bespoke interior execution for exclusive standalone estates. From grand entrance foyers to private landscapes.</p>
+                <a href="#contact" class="btn-solid">Inquire Now <i data-lucide="arrow-right" style="width:18px;"></i></a>
+            </div>
+        </div>
+
+        <div class="stacked-card reveal slide-up delay-1" id="apartments">
+            <img src="fitout apartment ai.jpg" alt="High-End Apartment Fitout">
+            <div class="card-content">
+                <h2>Apartments</h2>
+                <p>Space optimization, shell & core transformation, and high-end aesthetic upgrades tailored specifically for luxury high-rise living and penthouse environments.</p>
+                <a href="#contact" class="btn-solid">Inquire Now <i data-lucide="arrow-right" style="width:18px;"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- UNIFIED FOOTER -->
+    <footer>
+        <div class="footer-top reveal slide-up">
+            <div class="footer-brand">
+                <div class="logo"><div class="logo-mark"><i data-lucide="building-2"></i></div>The Fitout Team</div>
+                <p>A comprehensive, accountable engineering and interior design partner for premium Dubai properties.</p>
+            </div>
+            
+            <div class="footer-nav">
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="commercial.html">Commercial Fitout</a></li>
+                        <li><a href="residential.html">Residential Renovation</a></li>
+                        <li><a href="#">Technical Maintenance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">AC & HVAC</a></li>
+                        <li><a href="#">Electrical Engineering</a></li>
+                        <li><a href="#">AMC Packages</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-contact">
+                <a href="#contact" class="contact-pill">
+                    <div class="contact-icon"><i data-lucide="calendar"></i></div>
+                    <div class="contact-text"><h5>Request a Consultation</h5><p>Book a site visit online</p></div>
+                </a>
+                <a href="tel:+97145593018" class="contact-pill">
+                    <div class="contact-icon"><i data-lucide="phone"></i></div>
+                    <div class="contact-text"><h5>Call +971 45593018</h5><p>24/7 Help Desk</p></div>
+                </a>
+                <a href="https://wa.me/971522806351" class="contact-pill">
+                    <div class="contact-icon" style="color:var(--whatsapp); border-color:rgba(37,211,102,0.3);"><i data-lucide="message-circle"></i></div>
+                    <div class="contact-text"><h5>WhatsApp Us</h5><p>Instant Project Support</p></div>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom reveal slide-up delay-1">
+            <p>© 2026 The Fitout Team. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-icon"><i data-lucide="instagram" style="width:18px;"></i></a>
+                <a href="#" class="social-icon"><i data-lucide="linkedin" style="width:18px;"></i></a>
+                <a href="#" class="social-icon"><i data-lucide="facebook" style="width:18px;"></i></a>
+            </div>
+        </div>
+        <div class="footnote reveal slide-up delay-2">
+            The Fitout Team operates exclusively in Dubai, United Arab Emirates. We do not provide minor household cleaning, appliance repair, or e-commerce shop services.
+        </div>
+    </footer>
+
+    <div class="fab-wrapper"><a href="https://wa.me/971522806351" target="_blank" class="fab-wa" rel="noopener noreferrer"><i data-lucide="message-circle" style="width:28px; height:28px;"></i></a></div>
+
+    <script>
+        lucide.createIcons();
+        // Unified Navigation
+        window.addEventListener('scroll', () => { const mh = document.getElementById('main-header'); if (mh) mh.classList.toggle('scrolled', window.scrollY > 50); });
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        hamburgerBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            const icon = hamburgerBtn.querySelector('i');
+            icon.setAttribute('data-lucide', mobileNav.classList.contains('active') ? 'x' : 'menu');
+            lucide.createIcons();
+        });
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault(); e.stopPropagation();
+                const dropdown = toggle.parentElement.querySelector('.dropdown-menu');
+                if (dropdown) dropdown.classList.toggle('mobile-open');
+            });
+        });
+        document.querySelectorAll('#mobile-nav a:not(.mobile-dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                const icon = hamburgerBtn.querySelector('i');
+                icon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+        const mainHeader = document.getElementById('main-header');
+        if (mainHeader) window.addEventListener('scroll', () => mainHeader.classList.toggle('scrolled', window.scrollY > 50));
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); obs.unobserve(entry.target); } });
+        }, { threshold: 0.15 }); 
+        revealElements.forEach(el => revealOnScroll.observe(el));
+    </script>
+</body>
+</html>

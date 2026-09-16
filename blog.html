@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fitout Team | Premium Interior Design & Fitout</title>
+    <meta name="description" content="The people who engineer spaces. — professional fitout, maintenance and renovation services in Dubai by The Fitout Team.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@1.46.0/dist/umd/lucide.min.js" integrity="sha384-1avDoIZZ5mKtAlvTbQ2jge+TZA4z+qwhMFHdCpATww/SLVM8wKs7sROOEKMOizyV" crossorigin="anonymous"></script>
+
+    <style>
+        :root {
+            --brand-dark: #0a0f16; --brand-darker: #05080b; 
+            --brand-gold: #D4AF37; --brand-gold-hover: #F3E5AB; --brand-card: #121820;
+            --text-light: #F8F9FA; --text-muted: #A0AAB2; 
+            --glass-border: rgba(255, 255, 255, 0.08); --whatsapp: #25D366;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--brand-dark); color: var(--text-light); overflow-x: hidden; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        section { padding: 120px 5%; }
+        
+        .section-header { margin-bottom: 60px; text-align: center; }
+        .section-header h2 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 15px; color: var(--text-light); }
+        .section-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .overline { color: var(--brand-gold); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; display: block; }
+
+        .reveal { opacity: 0; transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translate(0, 0); }
+        .slide-up { transform: translateY(60px); } .slide-left { transform: translateX(-60px); } .slide-right { transform: translateX(60px); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+
+        /* HEADER & NAVIGATION */
+        header { 
+            position: fixed; top: 0; left: 0; right: 0; height: 90px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 5%; background: rgba(5, 8, 11, 0.95); z-index: 1000; 
+            border-bottom: 1px solid var(--glass-border); 
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo { display: flex; align-items: center; }
+        .logo-img { height: 45px; width: auto; object-fit: contain; }
+
+        nav { height: 100%; display: flex; align-items: center; }
+        nav > ul { display: flex; gap: 22px; height: 100%; align-items: center; margin: 0; padding: 0; list-style: none; }
+        nav > ul > li { position: relative; height: 100%; display: flex; align-items: center; }
+        
+        nav > ul > li > a { 
+            font-size: 0.78rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; 
+            color: var(--text-light); transition: var(--transition); display: flex; align-items: center; gap: 4px; padding: 0; white-space: nowrap;
+        }
+        nav > ul > li > a:hover { color: var(--brand-gold); }
+
+        .dropdown-menu { 
+            position: absolute; top: 100%; left: 0; background: var(--brand-darker); 
+            border: 1px solid var(--glass-border); min-width: 260px; 
+            opacity: 0; visibility: hidden; transform: translateY(10px); 
+            transition: all 0.3s ease; padding: 10px 0; border-radius: 8px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.9); pointer-events: none; z-index: 1100;
+            list-style: none; margin: 0;
+        }
+
+        .dropdown-menu::after { content: ''; position: absolute; bottom: 100%; left: 0; width: 100%; height: 25px; background: transparent; }
+
+        nav > ul > li:hover > .dropdown-menu { 
+            opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; 
+        }
+
+        .dropdown-menu li { position: relative; list-style: none; margin: 0; width: 100%; }
+        .dropdown-menu li > a { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 10px 20px; font-size: 0.8rem; color: var(--text-muted); 
+            transition: var(--transition); white-space: nowrap;
+        }
+        .dropdown-menu li > a:hover { color: var(--brand-gold); background: rgba(255,255,255,0.02); padding-left: 25px; }
+
+        .dropdown-submenu > .dropdown-menu { top: 0; left: 100%; transform: translateX(10px); }
+        .dropdown-submenu > .dropdown-menu::after { content: ''; position: absolute; top: 0; right: 100%; width: 25px; height: 100%; background: transparent; }
+        .dropdown-submenu:hover > .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(0); pointer-events: auto; }
+
+        .btn-header { 
+            border: 1px solid var(--glass-border); padding: 10px 20px; border-radius: 4px; 
+            font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 8px; 
+            transition: var(--transition); background: rgba(255,255,255,0.03); white-space: nowrap; color: var(--text-light);
+        }
+        .btn-header:hover { background: var(--brand-gold); color: var(--brand-dark); border-color: var(--brand-gold); }
+
+        /* HERO SECTION */
+        #hero { position: relative; height: 100vh; min-height: 800px; display: flex; align-items: center; overflow: hidden; padding: 0 5%; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('Fitout HP.jpg') center/cover; z-index: -2; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(5,8,11,1) 0%, rgba(5,8,11,0.8) 45%, rgba(5,8,11,0.2) 100%); z-index: -1; }
+        .hero-content { width: 100%; max-width: 800px; margin-top: 40px; }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: 5rem; line-height: 1.05; margin-bottom: 25px; }
+        .hero-subtitle { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px; max-width: 600px; }
+        .btn-primary { background: var(--brand-gold); color: var(--brand-dark); padding: 16px 32px; font-size: 0.9rem; font-weight: 600; border-radius: 4px; display: inline-flex; align-items: center; gap: 10px; transition: var(--transition); cursor: pointer; border: none; }
+        .btn-primary:hover { background: var(--brand-gold-hover); transform: translateY(-2px); }
+
+        /* DIVISIONS CARDS */
+        .divisions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1400px; margin: 0 auto; }
+        .div-card { background: var(--brand-card); border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); transition: var(--transition); display: flex; flex-direction: column; }
+        .div-card:hover { transform: translateY(-10px); border-color: var(--brand-gold); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .div-img { height: 200px; overflow: hidden; position: relative; }
+        .div-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s; }
+        .div-card:hover .div-img img { transform: scale(1.1); }
+        .div-tag { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 6px; }
+        .div-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
+        .div-content h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 12px; color: var(--text-light); }
+        .div-content p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; flex-grow: 1; }
+        .div-link { display: inline-flex; align-items: center; gap: 8px; color: var(--brand-gold); font-size: 0.9rem; font-weight: 600; transition: var(--transition); }
+        .div-link:hover { gap: 12px; color: var(--text-light); }
+
+        /* PROCESS TIMELINE */
+        #process { background: var(--brand-darker); text-align: center; }
+        .process-wrapper { display: flex; justify-content: space-between; position: relative; max-width: 1200px; margin: 60px auto 0; }
+        .process-line { position: absolute; top: 30px; left: 5%; right: 5%; height: 2px; background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent); z-index: 1; }
+        .process-step { position: relative; z-index: 2; width: 22%; display: flex; flex-direction: column; align-items: center; }
+        .step-circle { width: 60px; height: 60px; background: var(--brand-card); border: 2px solid var(--brand-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-family: 'Playfair Display', serif; color: var(--brand-gold); margin-bottom: 20px; box-shadow: 0 0 0 8px var(--brand-darker); transition: var(--transition); }
+        .process-step:hover .step-circle { background: var(--brand-gold); color: var(--brand-dark); transform: scale(1.1); }
+        .process-step h4 { font-size: 1.3rem; margin-bottom: 10px; }
+        .process-step p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* TRUST DASHBOARD */
+        .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .trust-card { background: var(--brand-card); padding: 40px; border-radius: 12px; border: 1px solid var(--glass-border); transition: var(--transition); display: flex; flex-direction: column; justify-content: center; }
+        .trust-card:hover { transform: translateY(-5px); border-color: var(--brand-gold); box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
+        .trust-card.large { grid-row: span 2; background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, transparent 100%); border-color: rgba(212,175,55,0.3); }
+        .trust-number { font-family: 'Playfair Display', serif; font-size: 4.5rem; color: var(--brand-gold); line-height: 1; margin-bottom: 10px; }
+        .trust-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 15px; }
+        .trust-desc { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* SERVICE SHORTCUTS */
+        #top-services { background: var(--brand-darker); }
+        .services-list { max-width: 1200px; margin: 0 auto; background: var(--brand-card); border-radius: 12px; border: 1px solid var(--glass-border); overflow: hidden; }
+        .service-row { display: grid; grid-template-columns: 180px 1fr 2fr 50px; align-items: center; padding: 25px 40px; border-bottom: 1px solid var(--glass-border); transition: var(--transition); text-decoration: none; color: inherit; }
+        .service-row:last-child { border-bottom: none; }
+        .service-row:hover { background: rgba(255,255,255,0.03); }
+        .service-row:hover .row-arrow { color: var(--brand-gold); transform: translateX(5px); }
+        .row-tag { font-size: 0.75rem; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+        .tag-dot { width: 6px; height: 6px; border-radius: 50%; }
+        .row-title { font-size: 1.2rem; font-weight: 600; }
+        .row-desc { color: var(--text-muted); font-size: 0.95rem; }
+        .row-arrow { justify-self: end; color: var(--text-muted); transition: var(--transition); }
+
+        /* PORTFOLIO SLIDER */
+        #portfolio { text-align: center; }
+        .slider-wrapper { position: relative; width: 100%; max-width: 1100px; height: 600px; margin: 50px auto 0; border-radius: 12px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.6); border: 1px solid var(--glass-border); cursor: ew-resize; touch-action: none; }
+        .slider-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+        .slider-before { z-index: 2; clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); filter: grayscale(15%) brightness(90%); }
+        .slider-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 4px; background: var(--brand-gold); z-index: 3; transform: translateX(-50%); pointer-events: none; }
+        .slider-grip { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 56px; height: 56px; background: var(--text-light); border: 4px solid var(--brand-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.5); pointer-events: none; }
+
+        /* FAQ */
+        #faq { background: var(--brand-darker); }
+        .faq-container { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; max-width: 1200px; margin: 0 auto; }
+        .faq-title h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 20px; }
+        details { background: var(--brand-card); margin-bottom: 15px; border-radius: 6px; border: 1px solid var(--glass-border); }
+        summary { padding: 25px 30px; font-size: 1.1rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); }
+        summary::-webkit-details-marker { display: none; }
+        summary:hover { color: var(--brand-gold); }
+        .faq-icon { transition: transform 0.3s ease; }
+        details[open] .faq-icon { transform: rotate(180deg); color: var(--brand-gold); }
+        .faq-content { padding: 0 30px 25px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; border-top: 1px solid var(--glass-border); margin-top: 10px; padding-top: 20px; }
+
+        /* FOOTER */
+        footer { background: #030507; padding: 100px 5% 40px; border-top: 1px solid var(--glass-border); }
+        .footer-top { display: grid; grid-template-columns: 2fr 3fr 2fr; gap: 60px; max-width: 1400px; margin: 0 auto; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .footer-brand p { color: var(--text-muted); font-size: 0.9rem; margin-top: 20px; max-width: 300px; }
+        .footer-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .footer-col h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 25px; }
+        .footer-col ul { display: flex; flex-direction: column; gap: 15px; }
+        .footer-col a { color: var(--text-light); font-size: 0.95rem; transition: var(--transition); display: flex; align-items: center; justify-content: space-between; }
+        .footer-col a:hover { color: var(--brand-gold); }
+        .footer-contact { display: flex; flex-direction: column; gap: 20px; }
+        .contact-pill { display: flex; align-items: center; gap: 20px; padding: 15px 25px; background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 8px; transition: var(--transition); text-decoration: none; color: inherit; }
+        .contact-pill:hover { background: rgba(255,255,255,0.05); border-color: var(--brand-gold); transform: translateY(-3px); }
+        .contact-icon { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; }
+        
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 40px auto 0; font-size: 0.85rem; color: var(--text-muted); flex-wrap: wrap; gap: 20px; }
+        .footer-links { display: flex; gap: 25px; }
+        .footer-links a:hover { color: var(--brand-gold); }
+        .footnote { text-align: center; font-size: 0.75rem; color: #555; margin-top: 40px; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 20px; }
+
+        .fab-wrapper { position: fixed; bottom: 30px; right: 30px; z-index: 999; }
+        .fab-wa { display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: var(--whatsapp); color: white; border-radius: 50%; box-shadow: 0 10px 25px rgba(0,0,0,0.4); transition: transform 0.3s; }
+        .fab-wa:hover { transform: scale(1.1); }
+
+        @media (max-width: 1024px) {
+            .divisions-grid { grid-template-columns: 1fr 1fr; }
+            .process-wrapper, .trust-grid, .faq-container, .footer-top { grid-template-columns: 1fr; }
+            .process-line { display: none; }
+            .process-step { width: 100%; margin-bottom: 40px; text-align: left; flex-direction: row; gap: 20px; align-items: flex-start; }
+            .step-circle { margin-bottom: 0; flex-shrink: 0; }
+            .service-row { grid-template-columns: 1fr; gap: 15px; }
+            .row-arrow { display: none; }
+        }
+        @media (max-width: 768px) { .divisions-grid { grid-template-columns: 1fr; } }
+
+        /* MOBILE NAVIGATION */
+        .hamburger { display: none; background: none; border: none; color: var(--text-light); cursor: pointer; z-index: 1002; padding: 5px; }
+        .hamburger i { width: 26px; height: 26px; }
+
+        @media (max-width: 1024px) {
+            .hamburger { display: block; }
+            nav {
+                position: fixed; top: 90px; left: 0; width: 100%; height: calc(100vh - 90px); height: calc(100dvh - 90px);
+                background: rgba(5, 8, 11, 0.98); backdrop-filter: blur(16px);
+                flex-direction: column; align-items: flex-start; padding: 20px 5% 100px;
+                transition: transform 0.4s ease, opacity 0.4s ease; transform: translateX(-100%); opacity: 0; visibility: hidden; z-index: 1001;
+                overflow-y: auto;
+            }
+            nav.active { transform: translateX(0); opacity: 1; visibility: visible; }
+            nav > ul { flex-direction: column; width: 100%; gap: 10px; height: auto; align-items: flex-start; }
+            nav > ul > li { width: 100%; height: auto; flex-direction: column; align-items: flex-start; }
+            nav > ul > li > a { font-size: 0.9rem; width: 100%; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .dropdown-menu {
+                position: static !important; opacity: 1 !important; visibility: visible !important; transform: none !important; box-shadow: none !important;
+                background: rgba(255,255,255,0.02) !important; border: none !important; border-left: 2px solid var(--brand-gold) !important;
+                padding-left: 10px !important; width: 100% !important; display: none; pointer-events: auto !important; margin-top: 3px;
+            }
+            .dropdown-menu.mobile-open { display: block !important; }
+            .dropdown-menu li > a { padding: 10px 12px; font-size: 0.85rem; }
+            .dropdown-submenu > .dropdown-menu { margin-left: 8px; border-left: 1px solid var(--glass-border) !important; }
+            .btn-header { display: none; }
+            .logo-img { height: 40px; }
+            .slider-wrapper { height: 300px; }
+        }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.3rem; line-height: 1.1; }
+            .hero-subtitle { font-size: 0.95rem; margin-bottom: 30px; }
+            .section-header h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="main-header">
+        <a href="index.html" class="logo">
+            <img src="Screenshot 2026-09-12 153109.png" alt="The Fitout Team Logo" class="logo-img">
+        </a>
+        <nav id="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="javascript:void(0);" class="mobile-dropdown-toggle">Projects <i data-lucide="chevron-down" style="width:14px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <a href="javascript:void(0);" class="mobile-dropdown-toggle">Residential <i data-lucide="chevron-right" style="width:12px;"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="residential.html#villas">Premium Villas</a></li>
+                                <li><a href="residential.html#apartments">High-End Apartments</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a href="javascript:void(0);" class="mobile-dropdown-toggle">Commercial <i data-lucide="chevron-right" style="width:12px;"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="commercial.html#hospitals">Hospitals</a></li>
+                                <li><a href="commercial.html#restaurants">Restaurants</a></li>
+                                <li><a href="commercial.html#offices">Business Offices</a></li>
+                                <li><a href="commercial.html#malls">Malls</a></li>
+                                <li><a href="commercial.html#shops">Retail Shops</a></li>
+                                <li><a href="commercial.html#schools">Schools</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="mobile-dropdown-toggle">Maintain <i data-lucide="chevron-down" style="width:14px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ac-maintenance.html">AC Maintenance</a></li>
+                        <li><a href="plumbing.html">Plumbing</a></li>
+                        <li><a href="electrical.html">Electrical</a></li>
+                        <li><a href="carpentry.html">Carpentry</a></li>
+                        <li><a href="masonry.html">Masonry</a></li>
+                        <li><a href="pool-care.html">Pool Care</a></li>
+                        <li><a href="gates-garage.html">Gates & Garage Doors</a></li>
+                        <li><a href="amc-contracts.html">Annual Maintenance Contracts</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="mobile-dropdown-toggle">Services <i data-lucide="chevron-down" style="width:14px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ac-duct.html">AC Duct Cleaning</a></li>
+                        <li><a href="water-tank.html">Water Tank Sanitization</a></li>
+                        <li><a href="pest-control.html">Pest Control Systems</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="mobile-dropdown-toggle">Renovate <i data-lucide="chevron-down" style="width:14px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="home-renovation.html">Home Renovation</a></li>
+                        <li><a href="villa-renovation.html">Villa Renovation</a></li>
+                        <li><a href="kitchen-renovation.html">Kitchen Renovation</a></li>
+                        <li><a href="bathroom-renovation.html">Bathroom Renovation</a></li>
+                        <li><a href="painting.html">Painting</a></li>
+                        <li><a href="tiling-flooring.html">Tiling & Flooring</a></li>
+                        <li><a href="shell-core.html">Shell & Core Fit-Out</a></li>
+                        <li><a href="pool-construction.html">Pool Construction</a></li>
+                        <li><a href="landscaping.html">Outdoor Landscaping</a></li>
+                        <li><a href="aluminum-glass.html">Aluminum & Glass</a></li>
+                    </ul>
+                </li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+        <!-- MOBILE MENU TOGGLE -->
+        <button class="hamburger" id="hamburger-btn" aria-label="Open menu"><i data-lucide="menu"></i></button>
+        <!-- REQUEST A VISIT BUTTON LINKED TO WHATSAPP -->
+        <a href="https://wa.me/971522806351?text=Hello,%20I%20would%20like%20to%20request%20a%20site%20visit%20from%20The%20Fitout%20Team." target="_blank" class="btn-header" rel="noopener noreferrer"><i data-lucide="calendar" style="width:16px;"></i> Request a visit</a>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="reveal slide-left">
+                <span class="overline">Dubai's Premier Fitout Partner</span>
+                <h1 class="hero-title">The people who engineer spaces.</h1>
+                <p class="hero-subtitle">Premium commercial design, high-end residential renovation, and specialized architectural care executed by one accountable team.</p>
+                <a href="#divisions" class="btn-primary">Explore Our Work <i data-lucide="arrow-down" style="width:18px;"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE DIVISIONS -->
+    <section id="divisions">
+        <div class="section-header reveal slide-up">
+            <span class="overline">Every vision starts here</span>
+            <h2>Four distinct divisions. One accountable team.</h2>
+            <p>From complete structural overhauls to technical MEP maintenance, we are an end-to-end partner for your property investments across Dubai.</p>
+        </div>
+        
+        <div class="divisions-grid">
+            <div class="div-card reveal slide-up">
+                <div class="div-img">
+                    <span class="div-tag"><div class="tag-dot" style="background:#D4AF37;"></div> Commercial</span>
+                    <img src="Busniss offeces fitout ai.jpg" alt="Commercial Fitout">
+                </div>
+                <div class="div-content">
+                    <h3>Commercial</h3>
+                    <p>Design and execution for offices, restaurants, retail shops, and medical facilities.</p>
+                    <a href="commercial.html" class="div-link">Explore Commercial <i data-lucide="arrow-right" style="width:16px;"></i></a>
+                </div>
+            </div>
+            <div class="div-card reveal slide-up delay-1">
+                <div class="div-img">
+                    <span class="div-tag"><div class="tag-dot" style="background:#cbd5e1;"></div> Residential</span>
+                    <img src="fitout villa ai.jpg" alt="Residential Fitout">
+                </div>
+                <div class="div-content">
+                    <h3>Residential</h3>
+                    <p>Whole-house renovations, premium material sourcing, and bespoke joinery for villas and apartments.</p>
+                    <a href="residential.html" class="div-link">Explore Residential <i data-lucide="arrow-right" style="width:16px;"></i></a>
+                </div>
+            </div>
+            <div class="div-card reveal slide-up delay-2">
+                <div class="div-img">
+                    <span class="div-tag"><div class="tag-dot" style="background:#60a5fa;"></div> Maintain</span>
+                    <img src="AC maintenance.jpg" alt="MEP Maintenance">
+                </div>
+                <div class="div-content">
+                    <h3>Maintain</h3>
+                    <p>Preventative AMC packages, AC maintenance, electrical, and complex plumbing solutions.</p>
+                    <a href="ac-maintenance.html" class="div-link">Explore Maintenance <i data-lucide="arrow-right" style="width:16px;"></i></a>
+                </div>
+            </div>
+            <div class="div-card reveal slide-up delay-3">
+                <div class="div-img">
+                    <span class="div-tag"><div class="tag-dot" style="background:#34d399;"></div> Services</span>
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Specialized Treatments">
+                </div>
+                <div class="div-content">
+                    <h3>Services</h3>
+                    <p>Advanced AC duct sanitization, water tank purifying, and large-scale pest control systems.</p>
+                    <a href="ac-duct.html" class="div-link">Explore Services <i data-lucide="arrow-right" style="width:16px;"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS TIMELINE -->
+    <section id="process">
+        <div class="section-header reveal slide-up">
+            <span class="overline">The Fitout Team Way</span>
+            <h2>Consult. Design. Execute. Handover.</h2>
+            <p>A single relationship that grows with your property, from the initial site visit to a space that flawlessly works around you.</p>
+        </div>
+        
+        <div class="process-wrapper reveal slide-up delay-1">
+            <div class="process-line"></div>
+            <div class="process-step">
+                <div class="step-circle">01</div>
+                <h4>Consult</h4>
+                <p>Define the scope and share your architectural blueprints or technical requirements.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-circle">02</div>
+                <h4>Design</h4>
+                <p>Receive an itemized quotation, material specifications, and strict scheduling milestones.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-circle">03</div>
+                <h4>Execute</h4>
+                <p>Our specialized divisions complete the build, keeping you updated at every step.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-circle">04</div>
+                <h4>Handover</h4>
+                <p>Enjoy living or working in a flawlessly engineered, optimally functioning space.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST DASHBOARD -->
+    <section id="trust">
+        <div class="section-header reveal slide-up">
+            <span class="overline">Trust, Made Visible</span>
+            <h2>More than a promise.</h2>
+            <p>From initial inquiry to final handover, we keep the process stress-free and dependable.</p>
+        </div>
+        
+        <div class="trust-grid">
+            <div class="trust-card large reveal slide-left">
+                <h3 class="trust-title" style="color:var(--brand-gold); font-size:1.5rem;">One Accountable Team</h3>
+                <h2 style="font-family:'Playfair Display', serif; font-size:3rem; margin-bottom: 20px;">A better way to get complex work done.</h2>
+                <p style="color:var(--text-muted); font-size:1.1rem; margin-bottom: 30px;">Jobs are routed to the exact skill set required, ensuring structural integrity and flawless aesthetic finishes without the stress of managing multiple contractors.</p>
+                <button onclick="document.getElementById('process').scrollIntoView({behavior: 'smooth'})" class="btn-primary" style="align-self: flex-start;">See how it works <i data-lucide="arrow-right" style="width:16px;"></i></button>
+            </div>
+            
+            <div class="trust-card reveal slide-right delay-1">
+                <div class="trust-number">4</div>
+                <div class="trust-title">Specialist Divisions</div>
+                <div class="trust-desc">Commercial, Residential, Maintain, and Services. Expertise across every major structural need.</div>
+            </div>
+
+            <div class="trust-card reveal slide-right delay-2">
+                <div class="trust-number">24/7</div>
+                <div class="trust-title">Help Desk Support</div>
+                <div class="trust-desc">Always on. Always ready. Our technical directors are available for emergency deployments.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICE SHORTCUTS -->
+    <section id="top-services">
+        <div class="section-header reveal slide-up">
+            <span class="overline">Service Shortcuts</span>
+            <h2>The solutions Dubai properties ask for most.</h2>
+            <p>Jump straight into our most-requested structural and technical services.</p>
+        </div>
+        
+        <div class="services-list reveal slide-up delay-1">
+            <a href="commercial.html#offices" class="service-row">
+                <div class="row-tag"><div class="tag-dot" style="background:#D4AF37;"></div> Commercial</div>
+                <div class="row-title">Office Fitout</div>
+                <div class="row-desc">Glass partitioning, MEP integration, and ergonomic workspace design.</div>
+                <div class="row-arrow"><i data-lucide="arrow-right"></i></div>
+            </a>
+            <a href="residential.html#villas" class="service-row">
+                <div class="row-tag" style="color:#cbd5e1;"><div class="tag-dot" style="background:#cbd5e1;"></div> Renovate</div>
+                <div class="row-title">Villa Remodeling</div>
+                <div class="row-desc">Whole-house architectural upgrades, extensions, and bespoke finishing.</div>
+                <div class="row-arrow"><i data-lucide="arrow-right"></i></div>
+            </a>
+            <a href="ac-maintenance.html" class="service-row">
+                <div class="row-tag" style="color:#60a5fa;"><div class="tag-dot" style="background:#60a5fa;"></div> Maintain</div>
+                <div class="row-title">AC & HVAC Systems</div>
+                <div class="row-desc">Chiller servicing, thermostat integration, and airflow optimization.</div>
+                <div class="row-arrow"><i data-lucide="arrow-right"></i></div>
+            </a>
+            <a href="ac-duct.html" class="service-row">
+                <div class="row-tag" style="color:#34d399;"><div class="tag-dot" style="background:#34d399;"></div> Services</div>
+                <div class="row-title">AC Duct Cleaning</div>
+                <div class="row-desc">Eliminate dust and mold from AC ducts for healthier, optimized airflow.</div>
+                <div class="row-arrow"><i data-lucide="arrow-right"></i></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO SLIDER -->
+    <section id="portfolio">
+        <h2 class="reveal slide-up" style="font-family:'Playfair Display',serif; font-size:3.5rem; margin-bottom:10px;">Transformation Evidence.</h2>
+        <p class="reveal slide-up delay-1" style="color:var(--text-muted); font-size:1.1rem;">Drag the slider to compare raw space to structural execution.</p>
+        
+        <div class="slider-wrapper reveal slide-up delay-2" id="slider-container">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" class="slider-img">
+            <img src="https://images.unsplash.com/photo-1588691503387-9b2f6be20c5d?auto=format&fit=crop&w=1200&q=80" class="slider-img slider-before" id="slider-before">
+            <div class="slider-handle" id="slider-handle">
+                <div class="slider-grip">
+                    <i data-lucide="chevron-left" style="color:var(--brand-dark)"></i>
+                    <i data-lucide="chevron-right" style="color:var(--brand-dark); margin-left:-10px;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="faq-container">
+            <div class="faq-title reveal slide-left">
+                <span class="overline">Good to Know</span>
+                <h2>Common questions before you contract.</h2>
+                <p style="color:var(--text-muted); font-size:1.1rem;">Practical answers for property owners comparing maintenance, renovation, and commercial fitout partners.</p>
+            </div>
+            <div class="faq-list reveal slide-right delay-1">
+                <details>
+                    <summary>What specific services does The Fitout Team provide? <i data-lucide="chevron-down" class="faq-icon"></i></summary>
+                    <div class="faq-content">We provide high-end commercial fitouts, luxury residential renovations, and specialized technical maintenance (including AC, electrical, plumbing, and AMC packages) across Dubai.</div>
+                </details>
+                <details>
+                    <summary>Do you handle necessary municipality approvals? <i data-lucide="chevron-down" class="faq-icon"></i></summary>
+                    <div class="faq-content">Yes. Our engineering teams assist with drafting, submitting, and acquiring necessary permits and approvals from Dubai Municipality, Civil Defence, and building management.</div>
+                </details>
+                <details>
+                    <summary>Can I book maintenance and renovation together? <i data-lucide="chevron-down" class="faq-icon"></i></summary>
+                    <div class="faq-content">Absolutely. Post-handover, many clients opt into our Annual Maintenance Contracts (AMC) to ensure their newly installed MEP systems and finishes remain in pristine condition.</div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-top reveal slide-up">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <img src="Screenshot 2026-09-12 153109.png" alt="The Fitout Team Logo" class="logo-img">
+                </a>
+                <p style="margin-top:15px;">A comprehensive, accountable engineering and interior design partner for premium Dubai properties.</p>
+            </div>
+            
+            <div class="footer-nav">
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="commercial.html">Commercial Fitout</a></li>
+                        <li><a href="residential.html">Residential Renovation</a></li>
+                        <li><a href="ac-maintenance.html">Technical Maintenance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="ac-maintenance.html">AC & HVAC</a></li>
+                        <li><a href="electrical.html">Electrical Engineering</a></li>
+                        <li><a href="amc-contracts.html">AMC Packages</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-contact">
+                <a href="https://wa.me/971522806351?text=Hello,%20I%20would%20like%20to%20request%20a%20consultation%20with%20The%20Fitout%20Team." target="_blank" class="contact-pill" rel="noopener noreferrer">
+                    <div class="contact-icon"><i data-lucide="calendar"></i></div>
+                    <div class="contact-text"><h5>Request a Consultation</h5><p>Book a site visit online</p></div>
+                </a>
+                <a href="tel:+97145593018" class="contact-pill">
+                    <div class="contact-icon"><i data-lucide="phone"></i></div>
+                    <div class="contact-text"><h5>Call +971 45593018</h5><p>24/7 Help Desk</p></div>
+                </a>
+                <a href="https://wa.me/971522806351" class="contact-pill">
+                    <div class="contact-icon" style="color:var(--whatsapp); border-color:rgba(37,211,102,0.3);"><i data-lucide="message-circle"></i></div>
+                    <div class="contact-text"><h5>WhatsApp Us</h5><p>Instant Project Support</p></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom reveal slide-up delay-1">
+            <p>© 2026 The Fitout Team. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+        
+        <div class="footnote reveal slide-up delay-2">
+            The Fitout Team operates exclusively in Dubai, United Arab Emirates. We do not provide minor household cleaning, appliance repair, or e-commerce shop services.
+        </div>
+    </footer>
+
+    <div class="fab-wrapper"><a href="https://wa.me/971522806351" target="_blank" class="fab-wa" rel="noopener noreferrer"><i data-lucide="message-circle" style="width:28px; height:28px;"></i></a></div>
+
+    <script>
+        lucide.createIcons();
+        // Mobile Menu Hamburger Toggle
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        hamburgerBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            const icon = hamburgerBtn.querySelector('i');
+            const isOpen = mobileNav.classList.contains('active');
+            icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+            lucide.createIcons();
+        });
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault(); e.stopPropagation();
+                const parentLi = toggle.parentElement;
+                const dropdown = parentLi.querySelector('.dropdown-menu');
+                if (dropdown) dropdown.classList.toggle('mobile-open');
+            });
+        });
+        document.querySelectorAll('#mobile-nav a:not(.mobile-dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                const icon = hamburgerBtn.querySelector('i');
+                icon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+        window.addEventListener('scroll', () => document.getElementById('main-header').classList.toggle('scrolled', window.scrollY > 50));
+
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); obs.unobserve(entry.target); } });
+        }, { threshold: 0.10 }); 
+        revealElements.forEach(el => revealOnScroll.observe(el));
+
+        const sliderContainer = document.getElementById('slider-container');
+        const beforeLayer = document.getElementById('slider-before');
+        const handle = document.getElementById('slider-handle');
+        let isSliding = false;
+
+        const updateSlider = (e) => {
+            if (!isSliding) return;
+            let clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            let rect = sliderContainer.getBoundingClientRect();
+            let x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+            let percent = (x / rect.width) * 100;
+            beforeLayer.style.clipPath = `polygon(0 0, ${percent}% 0, ${percent}% 100%, 0 100%)`;
+            handle.style.left = `${percent}%`;
+        };
+
+        sliderContainer.addEventListener('mousedown', () => isSliding = true);
+        sliderContainer.addEventListener('touchstart', () => isSliding = true, {passive: true});
+        window.addEventListener('mouseup', () => isSliding = false);
+        window.addEventListener('touchend', () => isSliding = false);
+        window.addEventListener('mousemove', updateSlider);
+        window.addEventListener('touchmove', updateSlider, {passive: true});
+    </script>
+</body>
+</html>
